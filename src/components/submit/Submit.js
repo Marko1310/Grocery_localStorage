@@ -18,7 +18,7 @@ const Submit = ({ changeInput, addGrocerie, input }) => {
         className="submit-input"
         onChange={(e) => changeInput(e)}
       ></input>
-      <input type="submit" value="Submit" className="submit-btn"></input>
+      <input type="submit" value="Add grocerie" className="submit-btn"></input>
     </form>
   );
 };
