@@ -56,7 +56,9 @@ function App() {
 
   // function to remove all groceries
   const emptyList = function () {
-    setGrocerieList([]);
+    if (window.confirm("Are you sure you want to delete all the groceries?")) {
+      setGrocerieList([]);
+    }
   };
 
   // function to delete item
