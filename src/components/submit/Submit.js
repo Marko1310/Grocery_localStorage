@@ -7,10 +7,9 @@ import "./Submit.css";
 // context
 import { GlobalContext } from "../../context/GlobalContext";
 
-const Submit = () => {
+const Submit = ({ setAlert }) => {
   // context
-  const { input, setInput, setAlert, setGrocerieList } =
-    useContext(GlobalContext);
+  const { input, setInput, setGrocerieList } = useContext(GlobalContext);
 
   // function to add groceries
   const addGrocerie = function () {
