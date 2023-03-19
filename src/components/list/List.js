@@ -1,59 +1,33 @@
-import React from "react";
+// react
+import React, { useContext } from "react";
+
+// css
 import "./List.css";
 
-const List = ({
-  grocerieList,
-  deleteItem,
-  emptyList,
-  changeEdit,
-  changeInputEdit,
-  inputEdit,
-  currentBtn,
-  currentID,
-}) => {
+// context
+import { GlobalContext } from "../../context/GlobalContext";
+
+// component
+import Grocerie from "../grocerie/Grocerie";
+
+const List = () => {
+  // context
+  const { grocerieList, setGrocerieList } = useContext(GlobalContext);
+
+  // function to remove all groceries
+  const emptyList = function () {
+    if (window.confirm("Are you sure you want to delete all the groceries?")) {
+      setGrocerieList([]);
+    }
+  };
+
   return (
     <div className="grocery-list-container">
-      {grocerieList.map((grocerie) => {
-        return (
-          <ul key={grocerie.id}>
-            <li className="grocery-list-item">
-              {grocerie.edit === false ? (
-                <div>{grocerie.title}</div>
-              ) : (
-                <input
-                  type="text"
-                  id="grocery"
-                  name="grocery"
-                  placeholder={grocerie.title}
-                  value={inputEdit}
-                  className="submit-edit"
-                  onChange={(e) => changeInputEdit(e)}
-                ></input>
-              )}{" "}
-              <div className="submit-buttons">
-                <button
-                  className={
-                    grocerie.edit ? `submit-btn confirm` : `submit-btn edit`
-                  }
-                  onClick={(e) => {
-                    changeEdit(grocerie.id);
-                  }}
-                  disabled={currentID !== grocerie.id && currentBtn}
-                >
-                  {grocerie.edit ? "Confirm" : "Edit"}
-                </button>
-
-                <button
-                  className="submit-btn delete"
-                  onClick={() => deleteItem(grocerie.id)}
-                >
-                  Delete
-                </button>
-              </div>
-            </li>
-          </ul>
-        );
-      })}
+      <ul>
+        {grocerieList.map((grocerie) => {
+          return <Grocerie key={grocerie.id} grocerie={grocerie} />;
+        })}
+      </ul>
       <div className="clear-btn" onClick={emptyList}>
         Clear list
       </div>
