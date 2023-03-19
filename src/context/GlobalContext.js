@@ -14,14 +14,32 @@ export const ContexWrapper = (props) => {
   // state for edit field
   const [inputEdit, setInputEdit] = useState("");
 
+  // state for current element
+  const [currentID, setCurrentID] = useState("");
+
   // state when the product is being edited
   const [edit, setEdit] = useState(false);
 
   // alert pop up
   const [alert, setAlert] = useState(false);
 
+  const globalObject = {
+    grocerieList,
+    setGrocerieList,
+    input,
+    setInput,
+    inputEdit,
+    setInputEdit,
+    currentID,
+    setCurrentID,
+    edit,
+    setEdit,
+    alert,
+    setAlert,
+  };
+
   return (
-    <GlobalContext.Provider value={{ edit, setEdit, alert, setAlert }}>
+    <GlobalContext.Provider value={globalObject}>
       {props.children}
     </GlobalContext.Provider>
   );

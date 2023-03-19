@@ -3,18 +3,14 @@ import List from "./components/list/List";
 import Alert from "./components/alert/Alert";
 import Navbar from "./components/navbar/Navbar";
 import Submit from "./components/submit/Submit";
+import { useContext } from "react";
+import { GlobalContext } from "./context/GlobalContext";
 
 function App() {
-  // state for input field
-  const [input, setInput] = useState("");
+  const { grocerieList, setGrocerieList } = useContext(GlobalContext);
 
   // state for edit field
   const [inputEdit, setInputEdit] = useState("");
-
-  // state for list of groceries
-  const [grocerieList, setGrocerieList] = useState(() => {
-    return JSON.parse(localStorage.getItem("groceries")) || [];
-  });
 
   useEffect(() => {
     localStorage.setItem("groceries", JSON.stringify(grocerieList));
@@ -29,29 +25,9 @@ function App() {
   //state for showing the alert
   const [showAlert, setShowAlert] = useState(null);
 
-  // function to update the input state field when entering the que
-  const changeInput = function (e) {
-    setInput(e.target.value);
-  };
-
   // function to update the edit input state
   const changeInputEdit = function (e) {
     setInputEdit(e.target.value);
-  };
-
-  // function to add groceries
-  const addGrocerie = function () {
-    const id = Math.random();
-
-    if (input !== "") {
-      setShowAlert(false);
-      setGrocerieList((prevGrocerieList) => {
-        return [...prevGrocerieList, { title: input, id: id, edit: false }];
-      });
-    } else {
-      setShowAlert(true);
-    }
-    setInput("");
   };
 
   // function to remove all groceries
@@ -61,14 +37,10 @@ function App() {
     }
   };
 
-  // function to delete item
-  const deleteItem = function (id) {
-    // filter items in array that id is not equal to selected id
-    setGrocerieList(grocerieList.filter((el) => el.id !== id));
-  };
-
   // change the state propertie of edit -> true/false by removing the element from the array and replacing with the new
-  const changeEdit = function (id) {
+  const changeEdit = function (id, el) {
+    console.log(el.current);
+    // el.current.focus();
     const grocerieCopy = [...grocerieList];
     for (let i = 0; i < grocerieCopy.length; i++) {
       if (id === grocerieCopy[i].id) {
@@ -104,17 +76,15 @@ function App() {
           {showAlert && <Alert removeALert={removeALert} />}
         </div>
         <Submit
-          changeInput={changeInput}
-          addGrocerie={addGrocerie}
-          input={input}
+          // addGrocerie={addGrocerie}
+          // input={input}
           grocerieList={grocerieList}
         />
         <List
           grocerieList={grocerieList}
-          deleteItem={deleteItem}
+          // deleteItem={deleteItem}
           emptyList={emptyList}
           changeEdit={changeEdit}
-          changeInput={changeInput}
           inputEdit={inputEdit}
           changeInputEdit={changeInputEdit}
           currentBtn={currentBtn}
