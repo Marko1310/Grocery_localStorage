@@ -9,9 +9,6 @@ import { GlobalContext } from "./context/GlobalContext";
 function App() {
   const { grocerieList, setGrocerieList } = useContext(GlobalContext);
 
-  // state for edit field
-  const [inputEdit, setInputEdit] = useState("");
-
   useEffect(() => {
     localStorage.setItem("groceries", JSON.stringify(grocerieList));
   }, [grocerieList]);
@@ -25,11 +22,6 @@ function App() {
   //state for showing the alert
   const [showAlert, setShowAlert] = useState(null);
 
-  // function to update the edit input state
-  const changeInputEdit = function (e) {
-    setInputEdit(e.target.value);
-  };
-
   // change the state propertie of edit -> true/false by removing the element from the array and replacing with the new
   const changeEdit = function (id, el) {
     console.log(el.current);
@@ -40,7 +32,7 @@ function App() {
         if (grocerieCopy[i].edit === true) {
           grocerieCopy.splice(i, 1, {
             ...grocerieList[i],
-            title: inputEdit,
+            // title: inputEdit,
             edit: false,
           });
         } else
@@ -51,7 +43,7 @@ function App() {
       }
     }
     setGrocerieList(grocerieCopy);
-    setInputEdit("");
+    // setInputEdit("");
     setCurrentID(id);
     setCurrentBtn((prevState) => !prevState);
   };
@@ -78,8 +70,8 @@ function App() {
           // deleteItem={deleteItem}
           // emptyList={emptyList}
           changeEdit={changeEdit}
-          inputEdit={inputEdit}
-          changeInputEdit={changeInputEdit}
+          // inputEdit={inputEdit}
+          // changeInputEdit={changeInputEdit}
           currentBtn={currentBtn}
           currentID={currentID}
         />
