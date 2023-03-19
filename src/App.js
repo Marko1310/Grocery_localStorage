@@ -30,13 +30,6 @@ function App() {
     setInputEdit(e.target.value);
   };
 
-  // function to remove all groceries
-  const emptyList = function () {
-    if (window.confirm("Are you sure you want to delete all the groceries?")) {
-      setGrocerieList([]);
-    }
-  };
-
   // change the state propertie of edit -> true/false by removing the element from the array and replacing with the new
   const changeEdit = function (id, el) {
     console.log(el.current);
@@ -83,7 +76,7 @@ function App() {
         <List
           grocerieList={grocerieList}
           // deleteItem={deleteItem}
-          emptyList={emptyList}
+          // emptyList={emptyList}
           changeEdit={changeEdit}
           inputEdit={inputEdit}
           changeInputEdit={changeInputEdit}
