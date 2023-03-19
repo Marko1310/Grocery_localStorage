@@ -1,15 +1,16 @@
-import "./Submit.css";
-import { GlobalContext } from "../../context/GlobalContext";
+// react
 import { useContext } from "react";
 
+// css
+import "./Submit.css";
+
+// context
+import { GlobalContext } from "../../context/GlobalContext";
+
 const Submit = () => {
+  // context
   const { input, setInput, setAlert, setGrocerieList } =
     useContext(GlobalContext);
-
-  // function to update the input state field when entering the que
-  const changeInput = function (e) {
-    setInput(e.target.value);
-  };
 
   // function to add groceries
   const addGrocerie = function () {
@@ -18,7 +19,7 @@ const Submit = () => {
     if (input !== "") {
       setAlert(false);
       setGrocerieList((prevGrocerieList) => {
-        return [...prevGrocerieList, { title: input, id: id, edit: false }];
+        return [...prevGrocerieList, { title: input, id: id }];
       });
     } else {
       setAlert(true);
@@ -41,7 +42,7 @@ const Submit = () => {
         placeholder="e.g. banana"
         value={input}
         className="submit-input"
-        onChange={(e) => changeInput(e)}
+        onChange={(e) => setInput(e.target.value)}
       ></input>
       <input type="submit" value="Add grocerie" className="submit-btn"></input>
     </form>
