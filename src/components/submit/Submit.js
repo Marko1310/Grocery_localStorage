@@ -43,7 +43,7 @@ const Submit = ({ setAlert }) => {
         className="submit-input"
         onChange={(e) => setInput(e.target.value)}
       ></input>
-      <input type="submit" value="Add grocerie" className="submit-btn"></input>
+      <input type="submit" value="Add" className="submit-btn"></input>
     </form>
   );
 };
