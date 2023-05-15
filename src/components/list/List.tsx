@@ -12,7 +12,13 @@ import Grocerie from '../grocerie/Grocerie';
 
 const List = () => {
   // context
-  const { grocerieList, setGrocerieList } = useContext(GlobalContext);
+  const context = useContext(GlobalContext);
+
+  if (context === null) {
+    return null;
+  }
+
+  const { grocerieList, setGrocerieList } = context;
 
   // function to remove all groceries
   const emptyList = function () {

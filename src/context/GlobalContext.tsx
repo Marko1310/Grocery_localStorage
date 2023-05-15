@@ -1,7 +1,12 @@
 import React, { createContext, useState, useEffect } from 'react';
 
+type Grocery = {
+  title: string;
+  id: number;
+};
+
 type GlobalContextType = {
-  grocerieList: [];
+  grocerieList: Grocery[];
   setGrocerieList: React.Dispatch<React.SetStateAction<[]>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
