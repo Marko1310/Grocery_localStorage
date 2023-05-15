@@ -7,7 +7,7 @@ type Grocery = {
 
 type GlobalContextType = {
   grocerieList: Grocery[];
-  setGrocerieList: React.Dispatch<React.SetStateAction<[]>>;
+  setGrocerieList: React.Dispatch<React.SetStateAction<Grocery[]>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
 };

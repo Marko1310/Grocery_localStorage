@@ -1,5 +1,5 @@
 // react
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 
 // css
 import './Submit.css';
@@ -13,7 +13,13 @@ type SubmitProps = {
 
 const Submit = ({ setAlert }: SubmitProps) => {
   // context
-  const { input, setInput, setGrocerieList } = useContext(GlobalContext);
+
+  const context = useContext(GlobalContext);
+
+  if (!context) {
+    return null;
+  }
+  const { input, setInput, setGrocerieList } = context;
 
   // function to add groceries
   const addGrocerie = function () {
