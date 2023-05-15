@@ -7,6 +7,10 @@ import "./Grocerie.css";
 // context
 import { GlobalContext } from "../../context/GlobalContext";
 
+type GrocerieProps = {
+  grocerie: 
+}
+
 const Grocerie = ({ grocerie }) => {
   // states
   const [content, setContent] = useState(grocerie.title);

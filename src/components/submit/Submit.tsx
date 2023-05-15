@@ -1,13 +1,17 @@
 // react
-import { useContext } from "react";
+import { useContext } from 'react';
 
 // css
-import "./Submit.css";
+import './Submit.css';
 
 // context
-import { GlobalContext } from "../../context/GlobalContext";
+import { GlobalContext } from '../../context/GlobalContext';
 
-const Submit = ({ setAlert }) => {
+type SubmitProps = {
+  setAlert: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Submit = ({ setAlert }: SubmitProps) => {
   // context
   const { input, setInput, setGrocerieList } = useContext(GlobalContext);
 
@@ -15,7 +19,7 @@ const Submit = ({ setAlert }) => {
   const addGrocerie = function () {
     const id = Math.random();
 
-    if (input !== "") {
+    if (input !== '') {
       setAlert(false);
       setGrocerieList((prevGrocerieList) => {
         return [...prevGrocerieList, { title: input, id: id }];
@@ -23,7 +27,7 @@ const Submit = ({ setAlert }) => {
     } else {
       setAlert(true);
     }
-    setInput("");
+    setInput('');
   };
 
   return (

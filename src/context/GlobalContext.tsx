@@ -1,30 +1,34 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from 'react';
 
-export const GlobalContext = createContext(null);
+type GlobalContextType = {
+  grocerieList: [];
+  setGrocerieList: React.Dispatch<React.SetStateAction<[]>>;
+  input: string;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
+};
 
-export const ContexWrapper = (props) => {
+export const GlobalContext = createContext<GlobalContextType | null>(null);
+
+export const ContexWrapper = (props: React.PropsWithChildren<{}>) => {
   // state for list of groceries
   const [grocerieList, setGrocerieList] = useState(() => {
-    return JSON.parse(localStorage.getItem("groceries")) || [];
+    const storedGroceries = localStorage.getItem('groceries');
+    return storedGroceries ? JSON.parse(storedGroceries) : [];
   });
 
   useEffect(() => {
-    localStorage.setItem("groceries", JSON.stringify(grocerieList));
+    localStorage.setItem('groceries', JSON.stringify(grocerieList));
   }, [grocerieList]);
 
   // state for main input field
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
 
-  const globalObject = {
+  const globalObject: GlobalContextType = {
     grocerieList,
     setGrocerieList,
     input,
     setInput,
   };
 
-  return (
-    <GlobalContext.Provider value={globalObject}>
-      {props.children}
-    </GlobalContext.Provider>
-  );
+  return <GlobalContext.Provider value={globalObject}>{props.children}</GlobalContext.Provider>;
 };
