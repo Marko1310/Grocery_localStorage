@@ -10,7 +10,7 @@ function App() {
   const [alert, setAlert] = useState(false);
 
   // function to remove alert
-  const removeALert = function () {
+  const removeAlert = function () {
     setAlert(false);
   };
 
@@ -18,7 +18,7 @@ function App() {
     <div>
       <Navbar />
       <div className="main-container">
-        <div className="alert-container">{alert && <Alert removeALert={removeALert} />}</div>
+        <div className="alert-container">{alert && <Alert removeAlert={removeAlert} />}</div>
         <Submit setAlert={setAlert} />
         <List />
       </div>
