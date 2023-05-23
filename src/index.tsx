@@ -1,15 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
 
-import { ContexWrapper } from "./context/GlobalContext";
+import { ContexWrapper } from './context/GlobalContext';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root') as Element);
 root.render(
   <React.StrictMode>
     <ContexWrapper>
       <App />
     </ContexWrapper>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
